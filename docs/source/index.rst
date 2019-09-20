@@ -26,7 +26,16 @@ If you have any trouble installing Mu, as a fallback you can download PortaMu fr
 
 Launching Mu
 ------------
-The first time you start Mu you might asked which mode you want to work in.  For this project you will be using PyGame Zero. If you already have Mu open in a different mode you can switch using the **mode** button in the top left.
+The first time you start Mu you might be asked which mode you want to work in.  For this project you will be using PyGame Zero. If you already have Mu open in a different mode you can switch using the **mode** button in the top left.
+
+Installing Assets
+-----------------
+Download the tutorial assets by |location_link|. You can close that page once the download finishes.   Click on the **Images** button in the Mu editor.  This will open the directory where Pygame Zero looks for images.  Copy the images from the **images.zip** file you just downloaded into this directory.
+
+
+.. |location_link| raw:: html
+
+   <a href="https://kinolien.github.io/gitzip/?download=https://github.com/andyborrell/pygamezero_bird/tree/master/images" target="_blank">clicking this link</a>
 
 Start the Tutorial
 ------------------
