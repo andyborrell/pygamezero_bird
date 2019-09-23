@@ -6,6 +6,8 @@
 Pygame Zero : Flappy Bird Tutorial
 ===========================================
 
+https://tinyurl.com/y37qxb5h
+
 Pygame Zero is a wrapper around Pygame, a popular Python game engine.   The advantage of Pygame Zero is that it presents a very simple and streamlined interface, meaning it takes very little work to make complete games.  
 
 The features in Pygame Zero are very similar to those found in Scratch, and are designed for programmers with no experience in text-based coding.  
@@ -22,6 +24,8 @@ See https://codewith.mu/en/download for download links and instructions for inst
 The Mu installer also installs PyGame and PyGame zero.  
 
 If you have any trouble installing Mu, as a fallback you can download PortaMu from that same page.  You don't need a pen drive as the website suggests,  PortaMu will simply run anywhere without being installed. Just download and unzip on to your desktop.
+
+It is not advised not to run the portable and the fully installed version of Mu on the same system, as they can sometimes interfere and break both installations.
 
 
 Launching Mu
