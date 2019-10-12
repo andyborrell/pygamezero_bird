@@ -99,7 +99,7 @@ Oh no! Why are the pipes moving the wrong way? Can you fix it? Hint: when settin
 More pipes
 ----------
 
-We need more pipes, one set is not enough. But actually we have enough, we can just loop them round when they go off the screen.
+We need more pipes, one set is not enough. But actually we have enough already, we can just loop them round when they go off the screen.
 
 To do this, let's meet the very handy :code:`if` statement and two of its friends, greater-than :code:`>` and less-than :code:`<`...
 
@@ -128,4 +128,29 @@ There are two tricky things to get right with :code:`if` statements:
 * Exactly what are you testing? What goes after the :code:`if`?
 * Get your indentation right -- how many spaces at the start of the line -- so that the right code is run.
 
-  
+
+Looping the pipes
+-----------------
+
+OK, let's get to work in the :code:`update` function, as that's where we move them. Add this code to the end of the function, and make sure you indent it so that it really is inside the function -- this is hard to explain, ask a mentor for help. 
+
+.. code:: python
+
+   if top_pipe.x < 0:
+     top_pipe.x = WIDTH
+
+OK, that's not bad, but two problems...
+
+1. Only the top pipe moves
+1. The pipe dissappears too quickly, before it's left the side of the screen
+
+Can you fix these issues?
+
+
+Ouch!
+-----
+
+OK, it's time to deal with collisions, this is going to be painful, but don't worry, no actual birds are going to be harmed -- only virtual birds.
+
+To be continued...
+
