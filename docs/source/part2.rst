@@ -71,11 +71,13 @@ Sometimes you'll see an error, in which case: read the last line of the error, t
 Flying forwards
 ---------------
 
+So now that we have the pipes, let's get them moving.
+
   Note: Smoke and Mirrors
 
-  You might be thinking "doesn't the player fly forward and the walls stay still?"
+  You might be thinking "doesn't the player fly forward and the pipes stay still?"
 
-  If you thought that, then the game fooled you. Its a good trick. It looks like the player is moving forward. But in reality, the player stays still and everything else moves backwards.
+  If you thought that, then the game fooled you. It's a good trick. It looks like the player is moving forward. But in reality, the player stays still and everything else moves backwards.
 
 So let's make the pipes move. Just as we did with our bird we can add a speed variable to the pipes and use this to move them. We want these first two lines of code to run once when we run the program, so they need to go at the end of your code:
 
@@ -91,4 +93,39 @@ And this code needs to run repeatedly, so it goes in the :code:`update` function
    top_pipe.x += top_pipe.speed
    bottom_pipe.x += bottom_pipe.speed
 
-Oh! Why are the pipes moving the wrong way? Can you fix it? What's the opposite of 1? 
+Oh no! Why are the pipes moving the wrong way? Can you fix it? Hint: when setting the speed, what's the opposite of 1? 
+
+
+More pipes
+----------
+
+We need more pipes, one set is not enough. But actually we have enough, we can just loop them round when they go off the screen.
+
+To do this, let's meet the very handy :code:`if` statement and two of its friends, greater-than :code:`>` and less-than :code:`<`...
+
+What do you think this code does? Open a new Mu script and type it in:
+
+.. code:: python
+          
+   a = 10
+   if a > 5:
+     print("Wow a is big")
+
+- To run this you'll need to save it first, just pick a filename such as :code:`test.py`.
+
+What about this:
+
+.. code:: python
+          
+   a = 10
+   if a < 5:
+     print("Wow a is small")
+
+So as you can see (hopefully!) :code:`if` tests somethnig, in the first example if the variable :code:`a` is greater than 5, and then does whatever you tell it to do.
+
+There are two tricky things to get right with :code:`if` statements:
+
+* Exactly what are you testing? What goes after the :code:`if`?
+* Get your indentation right -- how many spaces at the start of the line -- so that the right code is run.
+
+  
