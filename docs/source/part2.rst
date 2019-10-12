@@ -132,7 +132,7 @@ There are two tricky things to get right with :code:`if` statements:
 Looping the pipes
 -----------------
 
-OK, let's get to work in the :code:`update` function, as that's where we move them. Add this code to the end of the function, and make sure you indent it so that it really is inside the function -- this is hard to explain, ask a mentor for help. 
+OK, let's get to work in the :code:`update` function, as that's where we move the pipes. Add this code to the end of the function, and make sure you indent it so that it really is inside the function -- this is hard to explain, ask a mentor for help. 
 
 .. code:: python
 
@@ -141,8 +141,8 @@ OK, let's get to work in the :code:`update` function, as that's where we move th
 
 OK, that's not bad, but two problems...
 
-1. Only the top pipe moves
-1. The pipe dissappears too quickly, before it's left the side of the screen
+#. Only the top pipe moves
+#. The pipe dissappears too quickly, before it's left the side of the screen
 
 Can you fix these issues?
 
@@ -150,7 +150,7 @@ Can you fix these issues?
 Ouch!
 -----
 
-OK, it's time to deal with collisions, this is going to be painful, but don't worry, no actual birds are going to be harmed -- only virtual birds.
+OK, it's time to deal with collisions. This is going to be painful, but don't worry no actual birds are going to be harmed -- only virtual birds.
 
 To be continued...
 
