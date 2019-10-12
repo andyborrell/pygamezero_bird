@@ -9,7 +9,7 @@ So now you have a background and a bird that flys up and down, let's add the pip
 Adding the pipes
 ----------------
 
-You've already seen that we can create :code:`Actor` objects and move these around the screen. If you've forgotten, go and look at where you use :code:`barry_the_bird` in your code to see how actors works.
+You've already seen that we can create :code:`Actor` objects and move these around the screen. If you've forgotten, go and look at where you use :code:`barry_the_bird` in your code to see how it works.
 
 So we need to add two pipes, and if you look in the :code:`images` directory you'll see we have two files named :code:`top.png` and :code:`bottom.png`. How do we add these to the game?
 
@@ -45,7 +45,7 @@ Let's see what we can find out from an actor, add this code at the end of your p
 
 - Press **play** and look in the bottom half of your code window. 
 
-You should see two numbers appear (I get 500 100), that's the width and height of the top pipe.
+You should see two numbers appear (I get :code:`500 100`), that's the width and height of the top pipe.
 
 Using that info, we can change the definition of the top and bottom pipes to this:
 
@@ -65,10 +65,30 @@ You've been pressing play a lot haven't you? That's how you see the effect of yo
 
 From now on we're going to stop telling you when to press play and just encourage you to try running your code when you've completed each litte code box, or when you feel like it.
 
-Sometimes you'll an error, in which case, read the last line, think about what you just changed and get investigating. You can always ask a mentor if you are really stuck.
+Sometimes you'll see an error, in which case: read the last line of the error, think about what you just changed and get investigating. You can always ask a mentor if you are really stuck.
 
 
 Flying forwards
 ---------------
 
-...
+  Note: Smoke and Mirrors
+
+  You might be thinking "doesn't the player fly forward and the walls stay still?"
+
+  If you thought that, then the game fooled you. Its a good trick. It looks like the player is moving forward. But in reality, the player stays still and everything else moves backwards.
+
+So let's make the pipes move. Just as we did with our bird we can add a speed variable to the pipes and use this to move them. We want these first two lines of code to run once when we run the program, so they need to go at the end of your code:
+
+.. code:: python
+
+   top_pipe.speed = 1
+   bottom_pipe.speed = 1
+
+And this code needs to run repeatedly, so it goes in the :code:`update` function:
+
+.. code:: python
+
+   top_pipe.x += top_pipe.speed
+   bottom_pipe.x += bottom_pipe.speed
+
+Oh! Why are the pipes moving the wrong way? Can you fix it? What's the opposite of 1? 
