@@ -9,15 +9,51 @@ So now you have a background and a bird that flys up and down, let's add the pip
 Adding the pipes
 ----------------
 
-You've already seen that we can create :code:`Actor` objects and move these around the screen. If you've forgotten, go and look at :code:`barry_the_bird` to see how it works.
+You've already seen that we can create :code:`Actor` objects and move these around the screen. If you've forgotten, go and look at where you use :code:`barry_the_bird` in your code to see how actors works.
 
-So we need to add two pipes, and if you look in the :code:`images` directory you'll see we have two files named :code:`top` and :code:`bottom`. How do we add these to the game?
+So we need to add two pipes, and if you look in the :code:`images` directory you'll see we have two files named :code:`top.png` and :code:`bottom.png`. How do we add these to the game?
 
-Let's add two new actors, at the end of your code add:
+Let's create two new actors, at the end of your code add:
 
 .. code:: python
 
-   top_pipe = Actor('top')
-   bottom_pipe = Actor('bottom')
+   top_pipe = Actor('top', (300,0))
+   bottom_pipe = Actor('bottom', (300,500))
 
-- Press **play** to see the effct. 
+We mustn't forget to draw these pipes, so add this to your :code:`draw` function:
+
+.. code:: python
+
+   top_pipe.draw()
+   bottom_pipe.draw()
+
+- Press **play** to see the effect.
+
+Great we have some pipes! But they are just sitting there on the page and there's no gap between them.
+
+
+Mind the gap
+------------
+
+How do we make a gap for our bird to fly through? We need to make sure we position the pipes in the right place on the screen, and to do this we need to know how big each image is.
+
+Let's see what we can find out from an actor, add this code at the end of your program:
+
+.. code:: python
+
+   print(top_pipe.height, top_pipe.width)
+
+- Press **play** and look in the bottom half of your code window. 
+
+You should see two numbers appear (I get 500 100), that's the width and height of the top pipe.
+
+Using that info, we can change the definition of the top and bottom pipes to this:
+
+.. code:: python
+
+   gap = 100
+   top_pipe = Actor('top', (300, 0))
+   bottom_pipe = Actor('bottom', (300, top_pipe.height + gap))
+
+Hang on a minute, where did that maths come from? Well :code:`gap` is just a variable and we add it on to the height of the top pipe. Try changing the value and see what happens.
+
