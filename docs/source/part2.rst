@@ -57,3 +57,18 @@ Using that info, we can change the definition of the top and bottom pipes to thi
 
 Hang on a minute, where did that maths come from? Well :code:`gap` is just a variable and we add it on to the height of the top pipe. Try changing the value and see what happens.
 
+
+You know when to press play
+---------------------------
+
+You've been pressing play a lot haven't you? That's how you see the effect of your code changes.
+
+From now on we're going to stop telling you when to press play and just encourage you to try running your code when you've completed each litte code box, or when you feel like it.
+
+Sometimes you'll an error, in which case, read the last line, think about what you just changed and get investigating. You can always ask a mentor if you are really stuck.
+
+
+Flying forwards
+---------------
+
+...
