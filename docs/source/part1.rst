@@ -224,4 +224,4 @@ If you have still have time today, then have a go at these extra challenges:
 Ready for Part 2?
 -----------------
 
-Go to `Part 2 <part2.rst>`_.
+Go to :ref:`part2`.
