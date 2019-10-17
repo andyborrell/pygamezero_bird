@@ -57,7 +57,13 @@ Using that info, we can change the construction of the top and bottom pipes to t
    top_pipe = Actor('top', (300, 0))
    bottom_pipe = Actor('bottom', (300, top_pipe.height + gap))
 
-Hang on a minute, where did that maths come from? Well :code:`gap` is just a variable and we add it on to the height of the top pipe. Try changing the value and see what happens.
+The two values separated by a comma at the end of each :code:`Actor` line control the **x** (left to right), and **y** (top to bottom) position of the :code:`Actor`. So :code:`(300,0)` puts the pipe at 300 pixels away from the left edge, and 0 pixels down from the top of the window.
+
+Hang on a minute, where did that maths come from?  Well, :code:`gap` is a new variable we're creating, and we say that the height of the top pipe plus :code:`gap` should be the y value of the bottom pipe. Try changing the :code:`gap` value and see what happens.
+
+- Press **play** to check we made a gap
+
+*What's the biggest gap you can make and still see the bottom pipe?*
 
 
 You know when to press play
