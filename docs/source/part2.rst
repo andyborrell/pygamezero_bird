@@ -29,7 +29,9 @@ We mustn't forget to draw these pipes, so add this to your :code:`draw` function
 
 - Press **play** to see the effect.
 
-Great we have some pipes! But they are just sitting there on the page and there's no gap between them.
+Great, we have some pipes! But they are just sitting there on the page and there's no gap between them.
+
+*Can you figure out what the* :code:`(300, 0)` *and* :code:`(300, 500)` *parts do?*   (Try changing them)
 
 
 Mind the gap
@@ -37,17 +39,17 @@ Mind the gap
 
 How do we make a gap for our bird to fly through? We need to make sure we position the pipes in the right place on the screen, and to do this we need to know how big each image is.
 
-Let's see what we can find out from an actor, add this code at the end of your program:
+Let's see what we can find out from an Actor, add this code at the end of your program:
 
 .. code:: python
 
-   print(top_pipe.height, top_pipe.width)
+   print(top_pipe.width, top_pipe.height)
 
 - Press **play** and look in the bottom half of your code window. 
 
-You should see two numbers appear (I get :code:`500 100`), that's the width and height of the top pipe.
+You should see two numbers appear (I get :code:`100 500`), that's the width and height of the top pipe in pixels.
 
-Using that info, we can change the definition of the top and bottom pipes to this:
+Using that info, we can change the construction of the top and bottom pipes to this:
 
 .. code:: python
 
