@@ -71,9 +71,9 @@ You know when to press play
 
 You've been pressing play a lot haven't you? That's how you see the effect of your code changes.
 
-From now on we're going to stop telling you when to press play and just encourage you to try running your code when you've completed each litte code box, or when you feel like it.
+From now on we won't always tell you when to press play.  We encourage you to try running your code when you've completed each litte code box, or whenever you feel like it.
 
-Sometimes you'll see an error, in which case: read the last line of the error, think about what you just changed and get investigating. You can always ask a mentor if you are really stuck.
+Sometimes you'll see an error, in which case: read the last line of the error, think about what you just changed and get investigating. You can always ask a mentor if you need help.
 
 
 Flying forwards
@@ -81,7 +81,7 @@ Flying forwards
 
 So now that we have the pipes, let's get them moving.
 
-  Note: Smoke and Mirrors
+  **Note: Smoke and Mirrors**
 
   You might be thinking "doesn't the player fly forward and the pipes stay still?"
 
@@ -94,14 +94,18 @@ So let's make the pipes move. Just as we did with our bird we can add a speed va
    top_pipe.speed = 1
    bottom_pipe.speed = 1
 
-And this code needs to run repeatedly, so it goes in the :code:`update` function:
+And they need to move continously, so this code goes in the :code:`update` function:
 
 .. code:: python
 
    top_pipe.x += top_pipe.speed
    bottom_pipe.x += bottom_pipe.speed
 
-Oh no! Why are the pipes moving the wrong way? Can you fix it? Hint: when setting the speed, what's the opposite of 1? 
+- Press **play**
+
+Oh no! Why are the pipes moving the wrong way? 
+
+*Can you fix it?* Hint: when setting the speed, what's the opposite of 1? 
 
 
 More pipes
