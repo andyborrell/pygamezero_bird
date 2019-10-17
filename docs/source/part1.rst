@@ -219,3 +219,9 @@ If you have still have time today, then have a go at these extra challenges:
 *- Make it so that when a bird goes off the edge of the screen, it comes back on the other side.  Hint: ask a mentor how to add an* **if** *statement*
 
 *- Make it so that clicking the mouse makes the bird get faster each time*
+
+
+Ready for Part 2?
+-----------------
+
+Go to `Part 2 <part2.rst>`_.
