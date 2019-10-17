@@ -125,15 +125,21 @@ What do you think this code does? Open a new Mu script and type it in:
 
 - To run this you'll need to save it first, just pick a filename such as :code:`test.py`.
 
-What about this:
+- Look at the bottom of the Mu editor to see the output from your code
+
+What about this code?:
 
 .. code:: python
           
    a = 10
    if a < 5:
-     print("Wow a is small")
+     print("Wow!")
+     print("a is small")
+   print ("The End")
 
-So as you can see (hopefully!) :code:`if` tests somethnig, in the first example if the variable :code:`a` is greater than 5, and then does whatever you tell it to do.
+*Try changing the* :code:`a = 10` *line to make all 3 print statements run*
+
+So as you can see (hopefully!) :code:`if` tests something, in the first example if the variable :code:`a` is greater than 5, and then does whatever you tell it to do.
 
 There are two tricky things to get right with :code:`if` statements:
 
@@ -144,7 +150,7 @@ There are two tricky things to get right with :code:`if` statements:
 Looping the pipes
 -----------------
 
-OK, let's get to work in the :code:`update` function, as that's where we move the pipes. Add this code to the end of the function, and make sure you indent it so that it really is inside the function -- this is hard to explain, ask a mentor for help. 
+OK, let's get to work in the :code:`update` function, as that's where we move the pipes. Add this code to the end of the function, and make sure you indent it (add spaces to the beginning of the line) so that it really is inside the function. Ask a mentor for help if this doesn't make sense.
 
 .. code:: python
 
