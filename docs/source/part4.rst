@@ -148,4 +148,47 @@ The reason is that the code we added is in the update function, which runs every
 
 The are several different ways to solve this problem.  If you have your own idea then go ahead and try it out - don't be afraid to ask a mentor if you want help.  Or, you can leave this for now and read on to see how we're going to solve it.
 
+But first, a detour...
+
+Being a lazy programmer
+-----------------------
+You might have noticed that there are some lines of code that we've had to type in twice in different places. Like :code:`barry_the_bird.alive = True`, we do it once in the game setup code, and then again in the :code:`reset()` function, which is called when Barry dies and the game starts again.  Well maybe it would make sense to just use the :code:`reset()` function at the beginning of the game as well!  Then we'd only need the code in one place.
+
+Add a call to :code:`reset()` at the very end of the file.
+
+Now we can delete the :code:`barry_the_bird.alive = True` call that happens in the game setup code.
+
+*There is another line we can also now delete.  Go ahead and delete it*
+
+We also want our score to go back to zero when the game resets. 
+
+*Move the line that sets the score to zero up in to the reset function*
+
+Check the everything still works the same as before.
+
+End of detour: Let's fix the crazy score
+----------------------------------------
+
+Instead of adding 1 point each time we pass the pipes, let's number the pipes!  We'll assign a number to each pair of pipes and just set the score to be equal to that number when we go past.
+
+At the beginning of the game the pipes on the screen are pair number 1.  Add this to the :code:`reset()` function:
+
+.. code:: python
+
+    top_pipe.pair_number = 1
+
+We'll just keep track in the top pipe, don't worry about the bottom one.  
+
+*Make it so that this number is incremented when we move the pipes back across to the right side of the screen*  
+
+Hint : It happens in the update function
+
+*Print out the new pair_number when you increment it and look at the log panel in Mu to verify it's working properly*
+
+*Now modify the code where we change Barry's score.  Instead of incrementing it set it to be equal to the pair number.*
+
+**Please ask a mentor for help if you're having trouble with any of these steps**
+
+If you got to here and your score is now going up sensibly one at a time then well done indeed!!  This was a challenging section with a lot of work, so feel proud!
+
 
