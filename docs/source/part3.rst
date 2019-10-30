@@ -155,6 +155,24 @@ Once that's working you'll find a new problem!  Now he's not coming back to life
     
 
 Well done.  That's the end of part 3.   In the next part we'll look at a few finishing touches such as adding a flapping animation, randomizing the pipe positions, and keeping score.
+    
+Extra Challenges
+----------------
+
+* *Turn physics upside down!  Make gravity pull Barry upwards, and make flapping push him downwards*
+
+* *Add a cheat key that makes the player invincible*  
+ 
+Hint: Try adding this function and see what happens when you press a key:
+
+.. code:: python
+
+    def on_key_down(key):
+        print(key)
+
+* *Add a secret tiny flap that the player can do using the right mouse button*
+
+Hint, you will need to add a **parameter** to your on_mouse_down function, so it becomes :code:`on_mouse_down(button)`.  Try use the :code:`print` function like you did in the last challenge to see what values :code:`button` has.
 
 
 
