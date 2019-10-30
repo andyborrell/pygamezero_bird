@@ -14,8 +14,8 @@ At this point your code should look like this:
     def update():
         barry_the_bird.speed += gravity
         barry_the_bird.y += barry_the_bird.speed
-        top_pipe.x += top_pipe.speed
-        bottom_pipe.x += bottom_pipe.speed
+        top_pipe.x += scroll_speed
+        bottom_pipe.x += scroll_speed
         if top_pipe.right < 0:
             top_pipe.left = WIDTH
             bottom_pipe.left = WIDTH
@@ -190,5 +190,42 @@ Hint : It happens in the update function
 **Please ask a mentor for help if you're having trouble with any of these steps**
 
 If you got to here and your score is now going up sensibly one at a time then well done indeed!!  This was a challenging section with a lot of work, so feel proud!
+
+Explaining things to your future self
+-------------------------------------
+Our update function is getting pretty big now.  You might have found it's starting to take a while to read and figure out what does what. So it's about time we introduced **comments**. Comments are any text that you want to write in your file that you want the computer to ignore.  If you write helpful comments then it makes it easier for you, or even someone else to understand what your code is doing.  Let's add some comments so that our update function looks something like:
+
+.. code:: python
+
+  def update():
+    # Barry's movement
+    barry_the_bird.speed += gravity
+    barry_the_bird.y += barry_the_bird.speed
+    
+    # Pipe movement
+    top_pipe.x += scroll_speed
+    bottom_pipe.x += scroll_speed
+    
+    # Maybe move pipes to right side of screen
+    if top_pipe.right < 0:
+        top_pipe.left = WIDTH
+        bottom_pipe.left = WIDTH
+        top_pipe.pair_number += 1
+ 
+    # Check where barry is
+    if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
+        # He went off the screen!
+        reset()
+        
+    if (barry_the_bird.colliderect(bottom_pipe) or barry_the_bird.colliderect(top_pipe)):
+        on_hit_pipe()
+        
+    # Maybe change the score
+    if top_pipe.right < barry_the_bird.x:
+        barry_the_bird.score = top_pipe.pair_number
+
+Every line that starts with a # (it's called the hash symbol) is a comment and will be ignored by Python.  Normally a programmer would always be adding comments as they write code.  Feel free to add comments to your code as you work. Or to go back and add comments to code you already wrote.  It will make things easier for you!
+
+Check the everything still works the same as before.
 
 
