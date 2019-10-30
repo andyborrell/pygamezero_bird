@@ -50,12 +50,12 @@ What happens when Barry falls off the bottom of the screen?  Right now you proba
 
     def reset():
         print ("Back to the start...")
-        barry_the_bird.speed = 0
+        barry_the_bird.speed = 1
         barry_the_bird.center = (75, 100)
         top_pipe.center = (300, 0)
         bottom_pipe.center = (300, top_pipe.height + gap)
         
-Each line in this function is assigning a value.  First it sets barry's speed back to zero, then puts his center at an x,y position.  It also moves the pipes back to their starting points.  If you try the game now you'll see that nothing has changed.  Remember that a function won't do anything until you  **call** it.  Let's call it from the update function if barry goes off the screen.  Add this to the end of the update function:  
+Each line in this function is assigning a value.  First it sets Barry's speed back to what it started as, then puts his center at an x,y position.  It also moves the pipes back to their starting points.  If you try the game now you'll see that nothing has changed.  Remember that a function won't do anything until you  **call** it.  Let's call it from the update function if Barry goes off the screen.  Add this to the end of the update function:  
 
 .. code:: python
 
@@ -78,14 +78,14 @@ At the moment, Barry the bird seems to teleport upwards when you click the scree
 
     barry_the_bird.y -= 50
 
-This makes him move a whole 50 pixels all at once. Not very smooth!  When a real bird flaps its wings it changes the bird's speed, not its position. Change in position is just a side effect of having speed.  Let's try changing the on_mouse_down function to this:
+This makes him move a whole 50 pixels all at once. Not very smooth!  When a real bird flaps its wings it changes the bird's speed, not its position. Change in position is just a side effect of having speed.  Let's try changing the :code:`on_mouse_down` function to this:
 
 .. code:: python
 
     def on_mouse_down():
-        barry_the_bird.speed -= 6.5
+        barry_the_bird.speed = -6.5
 
-Did that work?  Try it and you'll see that when you flap now he'll just go up and hit the top of the screen.   We need some gravity to pull him back down again after each flap!
+Did that work?  Try it and you'll see that when you flap now he'll just go up and hit the top of the screen.  We need some gravity to pull him back down again after each flap!
 
 Let's create a variable called gravity at the end of your file:
 
@@ -106,7 +106,7 @@ Now this bird is more flappy!   Controlling him now takes a bit more skill.  You
 
 Collisions
 ----------
-In PyGameZero there's nothing to stop you drawing multiple sprites (images) on top of each other.  So if we want certain behaviour when things collide we need to make it happen.  Add this code to the end of the update function:
+In PyGameZero there's nothing to stop you drawing multiple sprites (images) on top of each other.  So if we want certain behaviour when things collide we need to take care of it ourselves.  Add this code to the end of the update function:
 
 .. code:: python
 
@@ -123,15 +123,15 @@ The :code:`colliderect` function checks if two objects are touching.  Because th
 
 Try this out.  Now Barry should become a ghost when you hit the bottom pipe, but it looks like there are still three problems:
 
- 1. Barry can still fly through the top pipe!
- 2. Barry stays as a ghost even when the game resets.
- 3. You can still flap and fly along even as a ghost. (see below)
+ 1. Barry stays as a ghost even when the game resets.
+ 2. Barry can still fly through the top pipe!
+ 3. You can still flap and fly along even as a ghost.
 
- *As a challenge try to fix problems 1 & 2 now.*   Once you've done that we'll look at fixing number 3 togther.  Now might also be a good time to try changing the size of :code:`gap` to tune the difficulty of the game.
+*Try to fix problems 1 & 2 now.*   Once you've done that we'll look at fixing number 3 together.  Now might also be a good time to try changing the size of :code:`gap` to tune the difficulty of the game.
 
-We'd like to stop Barry from flying while he's a ghost.  The code which makes him fly needs a way of knowing if he's still alive. We could use the barry_the_bird.image variable, because that changes when he dies.  But it's better to add a new variable to make our code cleaner and less likely to break if we make changes later.
+We'd like to stop Barry from flapping while he's a ghost.  The code which makes him fly needs a way of knowing if he's still alive. We could use the :code:`barry_the_bird.image` variable, because that changes when he dies.  But it's better to add a new variable to make our code cleaner and less likely to break if we make changes later.
 
-Add this line after we create barry_the_bird as an Actor (this is the line that starts :code:`barry_the_bird = Actor`)
+Add this line after we create :code:`barry_the_bird` as an :code:`Actor` (this is the line that starts :code:`barry_the_bird = Actor`)
 
 .. code:: python
 
@@ -147,12 +147,11 @@ Don't forget to change the indentation (number of spaces at the beginning) of th
 
 The next thing to do is to change barry to not be alive when he hits a pipe.
 
-* Challenge : Add a line to change barry's* :code:`alive` *variable to false when he hits a pipe.*
+*Challenge : Add a line to change barry's* :code:`alive` *variable to :code:`False` when he hits a pipe.*
 
-Once that's working you'll find a new problem!  Now he's not coming back to life when the level starts again. You guessed it...
+Once that's working you'll find a new problem!  Now, after the game resets you can't flap any more!  There's a simple fix:
 
-*Challenge : Bring Barry back to life when the level resets* 
-    
+*Set Barry's alive variable back to true when the game resets* 
 
 Well done.  That's the end of part 3.   In the next part we'll look at a few finishing touches such as adding a flapping animation, randomizing the pipe positions, and keeping score.
     
@@ -172,7 +171,7 @@ Hint: Try adding this function and see what happens when you press a key:
 
 * *Add a secret tiny flap that the player can do using the right mouse button*
 
-Hint, you will need to add a **parameter** to your on_mouse_down function, so it becomes :code:`on_mouse_down(button)`.  Try use the :code:`print` function like you did in the last challenge to see what values :code:`button` has.
+Hint, you will need to add a **parameter** to your :code:`on_mouse_down` function, so it becomes :code:`on_mouse_down(button)`.  Try use the :code:`print` function like you did in the last challenge to see what values :code:`button` has.
 
 
 
