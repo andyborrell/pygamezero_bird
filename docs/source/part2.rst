@@ -53,7 +53,7 @@ Using that info, we can change the construction of the top and bottom pipes to t
 
 .. code:: python
 
-   gap = 100
+   gap = 140
    top_pipe = Actor('top', (300, 0))
    bottom_pipe = Actor('bottom', (300, top_pipe.height + gap))
 
@@ -87,12 +87,13 @@ So now that we have the pipes, let's get them moving.
 
   If you thought that, then the game fooled you. It's a good trick. It looks like the player is moving forward. But in reality, the player stays still and everything else moves backwards.
 
-So let's make the pipes move. Just as we did with our bird we can add a speed variable to the pipes and use this to move them. We want these first two lines of code to run once when we run the program, so they need to go at the end of your code:
+So let's make the pipes move. Just as we did with our bird we can add a speed variable to the pipes and use this to move them. We want the following lines of code to run once when we run the program, so they need to go at the end of your code:
 
 .. code:: python
 
-   top_pipe.speed = 1
-   bottom_pipe.speed = 1
+   scroll_speed = 1
+   top_pipe.speed = scroll_speed
+   bottom_pipe.speed = scroll_speed
 
 And they need to move continously, so this code goes in the :code:`update` function:
 
