@@ -104,5 +104,57 @@ And we'll use this to change the bird's speed every frame.  Add this to the begi
 
 Now this bird is more flappy!   Controlling him now takes a bit more skill.  You can try to fly through the gaps, but we still haven't done anything to stop you flying straight through the pipes.  Let's fix that next...
 
+Collisions
+----------
+In PyGameZero there's nothing to stop you drawing multiple sprites (images) on top of each other.  So if we want certain behaviour when things collide we need to make it happen.  Add this code to the end of the update function:
+
+.. code:: python
+
+    if (barry_the_bird.colliderect(bottom_pipe)):
+        on_hit_pipe()
+
+The :code:`colliderect` function checks if two objects are touching.  Because this is inside the update function it will get checked every frame.  This won't work yet because we haven't created the :code:`on_hit_pipe` function.  Let's create it after the :code:`reset` function...
+
+.. code:: python
+
+    def on_hit_pipe():
+        print ("Hit pipe!")
+        barry_the_bird.image = "birddead"
+
+Try this out.  Now Barry should become a ghost when you hit the bottom pipe, but it looks like there are still three problems:
+
+ 1. Barry can still fly through the top pipe!
+ 2. Barry stays as a ghost even when the game resets.
+ 3. You can still flap and fly along even as a ghost. (see below)
+
+ *As a challenge try to fix problems 1 & 2 now.*   Once you've done that we'll look at fixing number 3 togther.  Now might also be a good time to try changing the size of :code:`gap` to tune the difficulty of the game.
+
+We'd like to stop Barry from flying while he's a ghost.  The code which makes him fly needs a way of knowing if he's still alive. We could use the barry_the_bird.image variable, because that changes when he dies.  But it's better to add a new variable to make our code cleaner and less likely to break if we make changes later.
+
+Add this line after we create barry_the_bird as an Actor (this is the line that starts :code:`barry_the_bird = Actor`)
+
+.. code:: python
+
+    barry_the_bird.alive = True
+
+We're creating the new variable :code:`alive` and setting it to true.  Now we need to make sure barry only flaps when he's alive.  Add this line to the beginning of the on_mouse_down function:
+
+.. code:: 
+
+    if (barry_the_bird.alive):
+
+Don't forget to change the indentation (number of spaces at the beginning) of the line that changes the speed, so that it's part of the **if** statement.  We only want to change the speed (in other words flap) **if** the bird is alive!
+
+The next thing to do is to change barry to not be alive when he hits a pipe.
+
+* Challenge : Add a line to change barry's* :code:`alive` *variable to false when he hits a pipe.*
+
+Once that's working you'll find a new problem!  Now he's not coming back to life when the level starts again. You guessed it...
+
+*Challenge : Bring Barry back to life when the level resets* 
+    
+
+Well done.  That's the end of part 3.   In the next part we'll look at a few finishing touches such as adding a flapping animation, randomizing the pipe positions, and keeping score.
+
 
 
