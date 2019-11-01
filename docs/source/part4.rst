@@ -58,7 +58,7 @@ At this point your code should look like this:
 
 Keeping Score!
 --------------
-Add the following code to the end of your :code:`draw` function:
+* Add the following code to the end of your :code:`draw` function:
 
 .. code:: python
 
@@ -85,7 +85,7 @@ This looks like a lot of code, but this is actually just one command (called a *
 
 Python would think that :code:`screen.draw.text` is a whole statement, and that doesn't make sense to it.
 
-Hopefully now when you play the game you see a number 7 at the top of the screen.
+* Check that now when you play the game you see a number 7 at the top of the screen.
 
 So why is this statement so big?  Well, it's because we're calling a function which takes a lot of **arguments**.  Arguments are like options.  When you call a function, if there are no arguments it looks like this:
 
@@ -99,17 +99,19 @@ This should look familiar to you, this is how we call our :code:`reset()` functi
 
     make_sandwich(white_bread, cheese)  # Arguments are separated by a comma
 
-The long statement we added above is a call to the screen.draw.text function (It's a good name for a function that draws text on the screen!).  See how the function call has 4 arguments separated by commas.
+The long statement we added above is a call to the :code:`screen.draw.text` function (It's a good name for a function that draws text on the screen!).  See how the function call has 4 arguments separated by commas.
 
-*Figure out what each of these arguments does by changing them and testing the results*
+*Can you figure out what each of these arguments does by changing them and testing the results?*
 
-*Move the number so it's centered at the top of the screen* Hint : Remember that :code:`WIDTH` contains the width of the screen
+* Move the number so it's centered at the top of the screen 
+
+Hint : Remember that :code:`WIDTH` contains the width of the screen
 
 Normally programmers don't have to guess what arguments do.  It's much easier to read the instructions!  You can find the documentation of this function at:
 
 https://pygame-zero.readthedocs.io/en/stable/ptext.html
 
-*Add a drop shadow to the number*  
+* Add a drop shadow to the number
 
 Hint: Look at the section titled "Drop Shadow" on that page.  You only need to add one more argument to the function call.  Ask a mentor for help if you have trouble getting this working.
 
@@ -117,17 +119,19 @@ Hint: Look at the section titled "Drop Shadow" on that page.  You only need to a
 Let's get to the point
 ----------------------
 
-A number which always stays the same isn't very helpful!  We need to make this number get bigger as the player goes past pipes. Let's add another variable to Barry to keep track of the score:
+A number which always stays the same isn't very helpful!  We need to make this number get bigger as the player goes past pipes. Let's add another variable to Barry to keep track of the score.
+
+.. Intentional mistake:
+
+* Add this to the bottom of the file:
 
 .. code:: python
 
     barry_the_bird.score = 0
 
-.. Intention mistake:
+Now let's add some code to increment (add 1 to) the score when we go past a pipe.  
 
-*Add this to the bottom of the file.*
-
-Now let's add some code to increment (add 1 to) the score when we go past a pipe.  Add this to the end of the update function:
+* Add this to the end of the update function:
 
 .. code:: python
 
@@ -136,17 +140,17 @@ Now let's add some code to increment (add 1 to) the score when we go past a pipe
             
 But we still need to plug the score variable into the code that draws the number on the screen.
 
-*Change the call to the* :code:`screen.draw.text` *function in your draw function so that is uses the score variable*
+* Change the call to the :code:`screen.draw.text` function in your draw function so that it uses the score variable
 
 Why does the score go up so fast?!
 ----------------------------------
-You've probably noticed now that when you fly through some pipes the score soars upwards for a short period, instead of just going up 1.  Can you think why this might be?
+You've probably noticed now that when you fly through some pipes the score soars upwards for a short period, instead of just going up 1.  
+
+*Can you think why this might be?*
 
 The reason is that the code we added is in the update function, which runs every frame.  The code we added will increment the score if the bird is past the pipe.  But the bird is past the pipe for the whole time it takes the pipe to get to the edge of the screen.  Every single frame while Barry is past the pipe the score goes up one.  This gives you an appreciation of how fast the computer is drawing frames!
 
 There are several different ways to solve this problem.  If you have your own idea then go ahead and try it out - don't be afraid to ask a mentor if you want help.  Or, you can leave this for now and read on to see how we're going to solve it.
-
-But first, a detour...
 
 Explaining things to your future self
 -------------------------------------
@@ -156,7 +160,7 @@ Comments are any text that you write in your file that you want the computer to 
 
 Let's add some comments so that our update function looks something like this:
 
-(Just add the lines starting with #)
+* Add the lines starting with #
 
 .. code:: python
 
@@ -186,11 +190,11 @@ Let's add some comments so that our update function looks something like this:
         if top_pipe.right < barry_the_bird.x:
             barry_the_bird.score += 1
 
-Every line that starts with a # is a comment and will be ignored by Python.
+Every line that starts with # is a comment and will be ignored by Python.
   
 Normally a programmer would always be adding comments as they write code.  Feel free to add comments to your code as you work. Or to go back and add comments to code you already wrote.  It will make things easier for you!
 
-Check the everything still works the same as before.
+* Check the everything still works the same as before.
 
 
 Let's fix the crazy score
@@ -198,21 +202,23 @@ Let's fix the crazy score
 
 Instead of adding 1 point each time we pass the pipes, let's number the pipes!  We'll assign a number to each pair of pipes and just set the score to be equal to that number when we go past.
 
-At the beginning of the game the pipes on the screen are pair number 1.  Add this to the :code:`reset()` function:
+At the beginning of the game the pipes on the screen are pair number 1.  
+
+* Add this to the :code:`reset()` function:
 
 .. code:: python
 
     top_pipe.pair_number = 1
 
-We'll just keep track in the top pipe, don't worry about the bottom one.  
+We'll just keep track in the top pipe, we know the bottom one will always be part of the same pair.  
 
-*Make it so that this number is incremented when we move the pipes back across to the right side of the screen*  
+* Make it so that this number is incremented when we move the pipes back across to the right side of the screen
 
-Hint : It happens in the update function.  Your new comments should help find the place!
+Hint : It happens in the update function.  Your new comments should help find the place.
 
-*Print out the new* :code:`pair_number` *when you increment it and look at the log panel in Mu to verify it's working properly*
+* Print out the new :code:`pair_number` when you increment it and look at the log panel in Mu to verify it's working properly
 
-*Now modify the code where we change Barry's score.  Instead of incrementing it set it to be equal to the pair number.*
+* Modify the code where we change Barry's score.  Instead of incrementing it set it to be equal to the pair number.
 
 **Please ask a mentor for help if you're having trouble with any of these steps**
 
@@ -222,9 +228,11 @@ If you got to here and your score is now going up sensibly one at a time then we
 
 Something Random
 ----------------
-To make the game more interesting we want the gap between the pipes to be at a different y position each time. To do this we need to generate a random number.
+To make the game more interesting we want the gap between the pipes to be at a different **y** position each time. To do this we need to pick a random number.
 
-Often in Python you'll need to use the **import** keyword to get access to functions that aren't available by default.  These extra functions are grouped together in **modules**.  Let's import the :code:`random` module by adding these lines to the very top of your file:
+Often in Python you'll need to use the **import** keyword to get access to functions that aren't available by default.  These extra functions are grouped together in **modules**.  
+
+* Import the :code:`random` module by adding these lines to the very top of your file:
 
 .. code:: python
 
@@ -233,11 +241,13 @@ Often in Python you'll need to use the **import** keyword to get access to funct
 
 The second line is to test the :code:`randint` function in the :code:`random` module.  If you run your game now you should see a number printed in the Mu log.  
 
-*Start the game a few times to see what this function does.*
+* Start the game a few times to see what this function does.
 
-Hopefully you'll see that this function returns a random integer (whole number) in the range of the two arguments we gave it. So in this case, from 0 to 10.  Now that we've tried it we can remove the :code:`print` line, but keep the :code:`import` line.
+Hopefully you'll see that this function returns a random integer (whole number) in the range of the two arguments we gave it. So in this case, from 1 to 6.  Now that we've tried it we can delete the :code:`print` line, but keep the :code:`import` line.
 
-Now let's use a random integer to move the gap up or down.  We'll do this in the update function, at the same time as when we move the pipes to the right side of the screen.  Find the 2 lines which do :code:`left = WIDTH` for the pipes, and change them to:
+Now let's use a random integer to move the gap up or down.  We'll do this in the update function, at the same time as when we move the pipes to the right side of the screen.  
+
+* Find the 2 lines which do :code:`left = WIDTH` for the pipes, and change them to:
 
 .. code:: python
 
@@ -247,7 +257,10 @@ Now let's use a random integer to move the gap up or down.  We'll do this in the
 
 If you test it now you'll see that after the first set of pipes the gap is much higher (150 pixels higher to be precise).  Note that this doesn't affect the first set of pipes.
 
-*Use the* :code:`random.randint` *function to move each pair of pipes to a random offset*
+* Use the :code:`random.randint` function to move each pair of pipes to a random offset
+
+Hint: When testing changes like this you might want to make the :code:`gap` bigger so you don't have to spend so many attempts getting through the pipes.
+
 
 It's not Flappy Bird with out a flap
 ------------------------------------
@@ -255,7 +268,7 @@ So far our bird image is very static and the game should probably just be called
 
 If you click on the **images** button in Mu you will see there are several bird images. So far we're using "bird1" for the living bird, and "birddead" for the bird ghost.  We can also use "bird0" to liven things up a bit!
 
-Add this code at the end of the update function:
+* Add this code at the end of the update function:
 
 .. code:: python
 
@@ -266,7 +279,9 @@ Add this code at the end of the update function:
         else:
             barry_the_bird.image = "bird0"
 
-Pay attention to the indentation here!  Any line that ends in a colon, like a function or an **if** statement has lines following that belong to it.  All the lines after it that have at least the next level of indentation belong to it.  So for the new :code:`if barry_the_bird.alive:` statement, all 4 lines after it are indented so they all belong to it.  They will only happen if Barry is alive!  (We need to make sure the bird image stays as a ghost when he's dead).  But, for the :code:`if barry_the_bird.speed > 0:` statement only the next line is indented, so only that one line depends on the :code:`if`.
+* Pay attention to the indentation here!  
+
+Any line that ends in a colon, like a function or an **if** statement has lines following that belong to it.  All the lines after it that have at least the next level of indentation belong to it.  So for the new :code:`if barry_the_bird.alive:` statement, all 4 lines after it are indented so they all belong to it.  They will only happen if Barry is alive!  (We need to make sure the bird image stays as a ghost when he's dead).  But, for the :code:`if barry_the_bird.speed > 0:` statement only the next line is indented, so only that one line depends on the :code:`if`.
 
 The **else** keyword is new to us.  You can probably guess what it does.  An **if** can optionally have an **else** part after it.  The **else** part is what will happen if the value in the **if** statement is false. So our new code is using the "bird1" image when flying downwards (remember that we measure from the top of the screen, so a positive speed means going down), and using "bird0" when flying upwards.
 
@@ -283,9 +298,11 @@ Bugs are things that don't work quite right in your code.  Absolutely all code h
 3. Fix it!
 4. Check that you can't reproduce it any more.
 
-*Bug #1:  When you die and start again, your score at the top of the screen doesn't go back to zero.*
+* **Bug #1**:  When you die and start again, your score at the top of the screen doesn't go back to zero.
 
-*Bug #2:  If you crash in to the top pipe your falling ghost can keep flying far enough to get a cheeky extra point.*
+* **Bug #2**:  If you crash in to the top pipe in just the right place your falling ghost can keep flying far enough to get a cheeky extra point.
+
+Hint: You could try changing :code:`scroll_speed` to make it easier to reproduce this bug.
 
 Well Done!!!
 ------------
@@ -295,8 +312,7 @@ If you want to add more features to your game the PyZero documentation will help
 
 https://pygame-zero.readthedocs.io/en/stable/
 
-
-Ask a mentor to talk about how to make your idea could work.  Here's a few things you might want to try:
+If you want to add something to the game then talk to a mentor about how you might do it.  Here's a few things you might want to try:
 
 - Make the bird stay still until the first flap
 
