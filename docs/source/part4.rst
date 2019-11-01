@@ -63,10 +63,10 @@ Add the following code to the end of your :code:`draw` function:
 .. code:: python
 
     screen.draw.text(
-            str(7),
-            color='white',
-            midtop =(20, 10),
-            fontsize=70,
+        str(7),
+        color='white',
+        midtop =(20, 10),
+        fontsize=70,
         )
 
 This looks like a lot of code, but this is actually just one command (called a **statement** in programming languages).  Up until now every **statement** we've used took up just one line, but this line is different.  Python knows that the statement doesn't end on the first line, because the "(" doesn't have matching ")" on that line, so it takes all the following lines up to the matching ")" as part of the same statement.  That means that the following code wouldn't work:
@@ -77,10 +77,10 @@ This looks like a lot of code, but this is actually just one command (called a *
     # Python will think this next line is a whole statement and will get confused:
     screen.draw.text
         (
-            str(7),
-            color='white',
-            midtop =(20, 10),
-            fontsize=70,
+        str(7),
+        color='white',
+        midtop =(20, 10),
+        fontsize=70,
         )
 
 Python would think that :code:`screen.draw.text` is a whole statement, and that doesn't make sense to it.
@@ -132,7 +132,7 @@ Now let's add some code to increment (add 1 to) the score when we go past a pipe
 .. code:: python
 
     if top_pipe.right < barry_the_bird.x:
-            barry_the_bird.score += 1
+        barry_the_bird.score += 1
             
 But we still need to plug the score variable into the code that draws the number on the screen.
 
@@ -160,31 +160,31 @@ Let's add some comments so that our update function looks something like this:
 
 .. code:: python
 
-  def update():
-    # Move Barry
-    barry_the_bird.speed += gravity
-    barry_the_bird.y += barry_the_bird.speed
+    def update():
+        # Move Barry
+        barry_the_bird.speed += gravity
+        barry_the_bird.y += barry_the_bird.speed
 
-    # Move pipes
-    top_pipe.x += scroll_speed
-    bottom_pipe.x += scroll_speed
+        # Move pipes
+        top_pipe.x += scroll_speed
+        bottom_pipe.x += scroll_speed
 
-    # Pipes off screen?
-    if top_pipe.right < 0:
-        top_pipe.left = WIDTH
-        bottom_pipe.left = WIDTH
+        # Pipes off screen?
+        if top_pipe.right < 0:
+            top_pipe.left = WIDTH
+            bottom_pipe.left = WIDTH
 
-    # Barry off screen?
-    if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
-        reset()
+        # Barry off screen?
+        if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
+            reset()
 
-    # Hit pipe?
-    if (barry_the_bird.colliderect(top_pipe) or barry_the_bird.colliderect(bottom_pipe)):
-        hit_pipe()
+        # Hit pipe?
+        if (barry_the_bird.colliderect(top_pipe) or barry_the_bird.colliderect(bottom_pipe)):
+            hit_pipe()
 
-    # Change score?
-    if top_pipe.right < barry_the_bird.x:
-        barry_the_bird.score += 1
+        # Change score?
+        if top_pipe.right < barry_the_bird.x:
+            barry_the_bird.score += 1
 
 Every line that starts with a # is a comment and will be ignored by Python.
   

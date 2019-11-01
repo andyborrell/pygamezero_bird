@@ -120,7 +120,7 @@ What do you think this code does? Open a new Mu script and type it in:
           
    a = 10
    if a > 5:
-     print("Wow a is big")
+       print("Wow a is big")
 
 - To run this you'll need to save it first, just pick a filename such as :code:`test.py`.
 
@@ -132,8 +132,8 @@ What about this code?:
           
    a = 10
    if a < 5:
-     print("Wow!")
-     print("a is small")
+       print("Wow!")
+       print("a is small")
    print ("The End")
 
 *Try changing the* :code:`a = 10` *line to make all 3 print statements run*
@@ -154,7 +154,7 @@ OK, let's get to work in the :code:`update` function, as that's where we move th
 .. code:: python
 
    if top_pipe.x < 0:
-     top_pipe.x = WIDTH
+       top_pipe.x = WIDTH
 
 OK, that's not bad, but two problems...
 
