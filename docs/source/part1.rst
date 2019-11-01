@@ -10,9 +10,9 @@ Getting Started
 
 .. code:: python
 
+    TITLE = 'Flappy Bird'
     WIDTH = 400
     HEIGHT = 708
-    TITLE = 'Flappy Bird'
 
 - Press **Save** and save the file as flappybird.py
 
@@ -152,7 +152,7 @@ An **update** function is a function that gets *called* again and again very qui
 
 *Can you make the bird start in a different place?  Hint: Try changing the line where you created your bird as an* **Actor**.
 
-Let's add a new variable which controls the speed of the bird.  Think about it like a slider we can change. We can actually put one variable inside another.  barry_the_bird already has **x** and **y** variables inside him.  We can add another one like this:
+Let's add a new variable which controls the speed of the bird.  Think about it like a slider we can change. We can actually put one variable inside another.  :code:`barry_the_bird` already has **x** and **y** variables inside him.  We can add another one like this:
 
 - Add this line at the end of the file:
 

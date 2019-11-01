@@ -43,7 +43,9 @@ At this point your code should look like this:
 
 Flying back to the start
 ------------------------
-What happens when Barry falls off the bottom of the screen?  Right now you probably lose him forever.  Let's try to do something better.  Add this new function after the on_mouse_down function:
+What happens when Barry falls off the bottom of the screen?  Right now you probably lose him forever.  Let's try to do something better.  
+
+* Add this new function after the on_mouse_down function:
 
 .. code:: python
 
@@ -54,18 +56,25 @@ What happens when Barry falls off the bottom of the screen?  Right now you proba
         top_pipe.center = (300, 0)
         bottom_pipe.center = (300, top_pipe.height + gap)
         
-Each line in this function is assigning a value.  First it sets Barry's speed back to what it started as, then puts his center at an x,y position.  It also moves the pipes back to their starting points.  If you try the game now you'll see that nothing has changed.  Remember that a function won't do anything until you  **call** it.  Let's call it from the update function if Barry goes off the screen.  Add this to the end of the update function:  
+Each line in this function is assigning a value.  First it sets Barry's speed back to what it started as, then puts his center at an x,y position.  It also moves the pipes back to their starting points.  If you try the game now you'll see that nothing has changed.  Remember that a function won't do anything until you  **call** it.  Let's call it from the update function if Barry goes off the screen.  
+
+* Add this to the end of the update function:  
 
 .. code:: python
 
     if barry_the_bird.y > HEIGHT:
         reset()
 
-Make sure you indent it so that it's part of the update function, but not part of the previous **if** statement.  Indenting means adding the right number of spaces to the beginning of the line.  Now check that everthing resets if Barry falls off the bottom of the screen.  Ask a mentor for help if you have trouble getting this to work.
+* Make sure you indent it so that it's part of the update function, but not part of the previous **if** statement.  Indenting means adding the right number of spaces to the beginning of the line.  
+
+* Check that everthing resets if Barry falls off the bottom of the screen.  
+
+**Ask a mentor for help if you have trouble getting this to work.**
 
 We also need to reset the game if Barry goes off the top of the screen.
 
-*Can you make that happen?* 
+* Change your code to make this happen.
+
 Hint: you will need the :code:`or` keyword.
 
 
@@ -77,22 +86,28 @@ At the moment, Barry the bird seems to teleport upwards when you click the scree
 
     barry_the_bird.y -= 50
 
-This makes him move a whole 50 pixels all at once. Not very smooth!  When a real bird flaps its wings it changes the bird's speed, not its position. Change in position is just a side effect of having speed.  Let's try changing the :code:`on_mouse_down` function to this:
+This makes him move a whole 50 pixels all at once. Not very smooth!  When a real bird flaps its wings it changes the bird's speed, not its position. Change in position is just a side effect of having speed.  
+
+* Change your :code:`on_mouse_down` function to this:
 
 .. code:: python
 
     def on_mouse_down():
         barry_the_bird.speed = -6.5
 
-Did that work?  Try it and you'll see that when you flap now he'll just go up and hit the top of the screen.  We need some gravity to pull him back down again after each flap!
+Did that work?  Try it and you'll see that when you flap now he'll just go up and hit the top of the screen.  
 
-Let's create a variable called gravity at the end of your file:
+We need some gravity to pull him back down again after each flap!
+
+* Create a variable called gravity at the end of your file:
 
 .. code:: python
 
     gravity = 0.3
 
-And we'll use this to change the bird's speed every frame.  Add this to the beginning of the update function:
+And we'll use this to change the bird's speed every frame.  
+
+* Add this to the beginning of the update function:
 
 .. code:: python
 
@@ -107,9 +122,9 @@ Being a lazy coder
 ------------------
 You might have noticed that there are some lines of code that we've had to type in twice in different places. For example, :code:`barry_the_bird.speed = 1`. We do it once in the game setup code, and then again in the :code:`reset()` function, which is called when Barry dies and the game starts again.  Well maybe it would make sense to just use the :code:`reset()` function at the beginning of the game as well!  Then we'd only need the code in one place.
 
-Add a call to :code:`reset()` at the very end of the file.
+* Add a call to :code:`reset()` at the very end of the file.
 
-Now we can delete the :code:`barry_the_bird.speed = 1` call that happens in the game setup code.
+* Now we can delete the :code:`barry_the_bird.speed = 1` call that happens in the game setup code.
 
 *Can you figure out a way  to specify the position of everthing in just one part of the code?*   
 
@@ -125,7 +140,7 @@ Let's give the player a bit more time to flap before they fall off the screen.  
 
     barry_the_bird.center = (75, 350)
 
-And change the 350 to something much smaller.  Maybe 50?  Try it and find a value that seems right to you.
+* Change the 350 to something much smaller.  Maybe 50?  Try it and find a value that seems right to you.
 
 Isn't it great this number is only in one place in the code?   If we hadn't done the last section (Being a lazy coder) we would have to change two different numbers!  It would have been very easy to forget about one of them.
 
@@ -147,30 +162,32 @@ The :code:`colliderect` function checks if two objects are touching.  Because th
         print ("Hit pipe!")
         barry_the_bird.image = "birddead"
 
-Try this out.  Now Barry should become a ghost when you hit the bottom pipe, but it looks like there are still three problems:
+Try this out.  Now Barry should become a ghost when you hit the top pipe, but it looks like there are still three problems:
 
  1. Barry stays as a ghost even when the game resets.
  2. Barry can still fly through the bottom pipe!
  3. You can still flap and fly along even as a ghost.
 
-*Try to fix problems 1 & 2 now.*   Once you've done that we'll look at fixing number 3 together.  Here are some hints if you need them:
+* Try to fix problems 1 & 2 now. We'll look at 3 together.
 
-Hint for number 1 : Barry started with the "bird1" image, but it changes to "birddead" when he hits a pipe.  Find the right place to change it back.
+**Hint for number 1** : Barry started with the "bird1" image, but it changes to "birddead" when he hits a pipe.  Find the right place to change it back.
 
-Hint for number 2 : Remember the :code:`or` keyword.
+**Hint for number 2** : Remember the :code:`or` keyword.
 
 
 Now might be a good time to try changing the size of :code:`gap` to tune the difficulty of the game.  You might want to make it very big while testing, so you can focus on testing and not on flying!
 
 Now we'd like to stop Barry from flapping while he's a ghost.  The code which makes him fly needs a way of knowing if he's still alive. We could use the :code:`barry_the_bird.image` variable, because that changes when he dies.  But it's better to add a new variable to make our code cleaner and less likely to break if we make changes later.
 
-Add this line to the :code:`reset` function (Being a lazy coder pays off again!):
+* Add this line to the :code:`reset` function (Being a lazy coder pays off again!):
 
 .. code:: python
 
     barry_the_bird.alive = True
 
-We're creating the new variable :code:`alive` and setting it to true.  Now we need to make sure barry only flaps when he's alive.  Add this line to the beginning of the on_mouse_down function:
+We're creating the new variable :code:`alive` and setting it to true.  Now we need to make sure barry only flaps when he's alive.  
+
+* Add this line to the beginning of the on_mouse_down function:
 
 .. code:: 
 
@@ -180,8 +197,7 @@ Don't forget to change the indentation (number of spaces at the beginning) of th
 
 The next thing to do is to change barry to not be alive when he hits a pipe.
 
-*Challenge : Add a line to change barry's* :code:`alive` *variable to* :code:`False` *when he hits a pipe.*
-
+* Add a line to change barry's :code:`alive` variable to :code:`False` when he hits a pipe.
 
 
 Well done.  That's the end of part 3.   In the next part we'll look at a few finishing touches such as adding a flapping animation, randomizing the pipe positions, and keeping score.
@@ -189,9 +205,9 @@ Well done.  That's the end of part 3.   In the next part we'll look at a few fin
 Extra Challenges
 ----------------
 
-* *Turn physics upside down!  Make gravity pull Barry upwards, and make flapping push him downwards*
+* Turn physics upside down!  Make gravity pull Barry upwards, and make flapping push him downwards
 
-* *Add a cheat key that makes the player invincible*  
+* Add a cheat key that makes the player invincible
  
 Hint: Try adding this function and see what happens when you press a key:
 
@@ -200,7 +216,7 @@ Hint: Try adding this function and see what happens when you press a key:
     def on_key_down(key):
         print(key)
 
-* *Add a secret tiny flap that the player can do using the right mouse button*
+* Add a secret tiny flap that the player can do using the right mouse button
 
 Hint: you will need to add a **parameter** to your :code:`on_mouse_down` function, so it becomes :code:`on_mouse_down(button)`.  Try use the :code:`print` function like you did in the last challenge to see what values :code:`button` has.
 

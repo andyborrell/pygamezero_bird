@@ -298,6 +298,8 @@ https://pygame-zero.readthedocs.io/en/stable/
 
 Ask a mentor to talk about how to make your idea could work.  Here's a few things you might want to try:
 
+- Make the bird stay still until the first flap
+
 - A high score feature so you can see your best score.
 
 - Starting the game with 3 lives so you can hit the pipes twice without dying

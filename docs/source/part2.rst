@@ -161,7 +161,7 @@ OK, that's not bad, but two problems...
 #. Only the top pipe moves
 #. The pipe dissappears too quickly, before it's left the side of the screen
 
-Can you fix these issues?
+* Can you fix these issues?
 
 
 Ouch!
