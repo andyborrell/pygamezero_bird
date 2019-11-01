@@ -103,8 +103,8 @@ And we'll use this to change the bird's speed every frame.  Add this to the begi
 
 Now this bird is more flappy!   Controlling him now takes a bit more skill.  You can try to fly through the gaps, but we still haven't done anything to stop you flying straight through the pipes.  We'll fix that soon. But first...
 
-Being a lazy programmer
------------------------
+Being a lazy coder
+------------------
 You might have noticed that there are some lines of code that we've had to type in twice in different places. For example, :code:`barry_the_bird.speed = 1`. We do it once in the game setup code, and then again in the :code:`reset()` function, which is called when Barry dies and the game starts again.  Well maybe it would make sense to just use the :code:`reset()` function at the beginning of the game as well!  Then we'd only need the code in one place.
 
 Add a call to :code:`reset()` at the very end of the file.
@@ -127,7 +127,7 @@ Let's give the player a bit more time to flap before they fall off the screen.  
 
 And change the 350 to something much smaller.  Maybe 50?  Try it and find a value that seems right to you.
 
-Isn't it great this number is only in one place in the code?   If we hadn't done the last section (Being a lazy programmer) we would have to change two different numbers!  It would have been very easy to forget about one of them.
+Isn't it great this number is only in one place in the code?   If we hadn't done the last section (Being a lazy coder) we would have to change two different numbers!  It would have been very easy to forget about one of them.
 
 
 Collisions
@@ -164,7 +164,7 @@ Now might be a good time to try changing the size of :code:`gap` to tune the dif
 
 Now we'd like to stop Barry from flapping while he's a ghost.  The code which makes him fly needs a way of knowing if he's still alive. We could use the :code:`barry_the_bird.image` variable, because that changes when he dies.  But it's better to add a new variable to make our code cleaner and less likely to break if we make changes later.
 
-Add this line to the :code:`reset` function (Being a lazy programmer pays off again!):
+Add this line to the :code:`reset` function (Being a lazy coder pays off again!):
 
 .. code:: python
 

@@ -10,7 +10,7 @@ At this point your code should look like this:
     TITLE = 'Flappy Bird'
     WIDTH = 400
     HEIGHT = 708
-    
+
     def update():
         barry_the_bird.speed += gravity
         barry_the_bird.y += barry_the_bird.speed
@@ -21,44 +21,40 @@ At this point your code should look like this:
             bottom_pipe.left = WIDTH
         if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
             reset()
-        if (barry_the_bird.colliderect(bottom_pipe) or barry_the_bird.colliderect(top_pipe)):
-            on_hit_pipe()
-    
+        if (barry_the_bird.colliderect(top_pipe) or barry_the_bird.colliderect(bottom_pipe)):
+            hit_pipe()
+
     def draw():
         screen.blit('background', (0, 0))
         barry_the_bird.draw()
         top_pipe.draw()
         bottom_pipe.draw()
-    
+
     def on_mouse_down():
         if (barry_the_bird.alive):
             barry_the_bird.speed = -6.5
-        
+
     def reset():
         print ("Back to the start...")
         barry_the_bird.speed = 1
         barry_the_bird.center = (75, 100)
-        barry_the_bird.image = "bird0"
+        barry_the_bird.image = "bird1"
         barry_the_bird.alive = True
         top_pipe.center = (300, 0)
         bottom_pipe.center = (300, top_pipe.height + gap)
-        
-    def on_hit_pipe():
+
+    def hit_pipe():
         print ("Hit pipe!")
         barry_the_bird.image = "birddead"
         barry_the_bird.alive = False
-        
-    barry_the_bird = Actor('bird1', (75, 350))
-    barry_the_bird.speed = 1
-    barry_the_bird.alive = True
-    
+
+    barry_the_bird = Actor('bird1')
     gap = 140
-    top_pipe = Actor('top', (300, 0))
-    bottom_pipe = Actor('bottom', (300, top_pipe.height + gap))
+    top_pipe = Actor('top')
+    bottom_pipe = Actor('bottom')
     scroll_speed = -1
-    top_pipe.speed = scroll_speed
-    bottom_pipe.speed = scroll_speed
-    gravity = 0.3   
+    gravity = 0.3
+    reset()
 
 Keeping Score!
 --------------
@@ -127,7 +123,9 @@ A number which always stays the same isn't very helpful!  We need to make this n
 
     barry_the_bird.score = 0
 
-You should add this just after you create Barry, the same place that we set him to be alive.
+.. Intention mistake:
+
+*Add this to the bottom of the file.*
 
 Now let's add some code to increment (add 1 to) the score when we go past a pipe.  Add this to the end of the update function:
 
@@ -146,28 +144,57 @@ You've probably noticed now that when you fly through some pipes the score soars
 
 The reason is that the code we added is in the update function, which runs every frame.  The code we added will increment the score if the bird is past the pipe.  But the bird is past the pipe for the whole time it takes the pipe to get to the edge of the screen.  Every single frame while Barry is past the pipe the score goes up one.  This gives you an appreciation of how fast the computer is drawing frames!
 
-The are several different ways to solve this problem.  If you have your own idea then go ahead and try it out - don't be afraid to ask a mentor if you want help.  Or, you can leave this for now and read on to see how we're going to solve it.
+There are several different ways to solve this problem.  If you have your own idea then go ahead and try it out - don't be afraid to ask a mentor if you want help.  Or, you can leave this for now and read on to see how we're going to solve it.
 
 But first, a detour...
 
-Being a lazy programmer
------------------------
-You might have noticed that there are some lines of code that we've had to type in twice in different places. Like :code:`barry_the_bird.alive = True`, we do it once in the game setup code, and then again in the :code:`reset()` function, which is called when Barry dies and the game starts again.  Well maybe it would make sense to just use the :code:`reset()` function at the beginning of the game as well!  Then we'd only need the code in one place.
+Explaining things to your future self
+-------------------------------------
+Our update function is getting pretty big now.  It's starting to take a while to figure out what does what.   It's time to introduce **comments**! 
 
-Add a call to :code:`reset()` at the very end of the file.
+Comments are any text that you write in your file that you want the computer to ignore.  If you write helpful comments then it makes it easier for you, or even someone else to understand what your code is doing.  
 
-Now we can delete the :code:`barry_the_bird.alive = True` call that happens in the game setup code.
+Let's add some comments so that our update function looks something like this:
 
-*There is another line we can also now delete.  Go ahead and delete it*
+(Just add the lines starting with #)
 
-We also want our score to go back to zero when the game resets. 
+.. code:: python
 
-*Move the line that sets the score to zero up in to the reset function*
+  def update():
+    # Move Barry
+    barry_the_bird.speed += gravity
+    barry_the_bird.y += barry_the_bird.speed
+
+    # Move pipes
+    top_pipe.x += scroll_speed
+    bottom_pipe.x += scroll_speed
+
+    # Pipes off screen?
+    if top_pipe.right < 0:
+        top_pipe.left = WIDTH
+        bottom_pipe.left = WIDTH
+
+    # Barry off screen?
+    if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
+        reset()
+
+    # Hit pipe?
+    if (barry_the_bird.colliderect(top_pipe) or barry_the_bird.colliderect(bottom_pipe)):
+        hit_pipe()
+
+    # Change score?
+    if top_pipe.right < barry_the_bird.x:
+        barry_the_bird.score += 1
+
+Every line that starts with a # is a comment and will be ignored by Python.
+  
+Normally a programmer would always be adding comments as they write code.  Feel free to add comments to your code as you work. Or to go back and add comments to code you already wrote.  It will make things easier for you!
 
 Check the everything still works the same as before.
 
-End of detour: Let's fix the crazy score
-----------------------------------------
+
+Let's fix the crazy score
+-------------------------
 
 Instead of adding 1 point each time we pass the pipes, let's number the pipes!  We'll assign a number to each pair of pipes and just set the score to be equal to that number when we go past.
 
@@ -181,52 +208,15 @@ We'll just keep track in the top pipe, don't worry about the bottom one.
 
 *Make it so that this number is incremented when we move the pipes back across to the right side of the screen*  
 
-Hint : It happens in the update function
+Hint : It happens in the update function.  Your new comments should help find the place!
 
-*Print out the new pair_number when you increment it and look at the log panel in Mu to verify it's working properly*
+*Print out the new* :code:`pair_number` *when you increment it and look at the log panel in Mu to verify it's working properly*
 
 *Now modify the code where we change Barry's score.  Instead of incrementing it set it to be equal to the pair number.*
 
 **Please ask a mentor for help if you're having trouble with any of these steps**
 
 If you got to here and your score is now going up sensibly one at a time then well done indeed!!  This was a challenging section with a lot of work, so feel proud!
-
-Explaining things to your future self
--------------------------------------
-Our update function is getting pretty big now.  You might have found it's starting to take a while to read and figure out what does what. So it's about time we introduced **comments**. Comments are any text that you want to write in your file that you want the computer to ignore.  If you write helpful comments then it makes it easier for you, or even someone else to understand what your code is doing.  Let's add some comments so that our update function looks something like:
-
-.. code:: python
-
-  def update():
-    # Barry's movement
-    barry_the_bird.speed += gravity
-    barry_the_bird.y += barry_the_bird.speed
-    
-    # Pipe movement
-    top_pipe.x += scroll_speed
-    bottom_pipe.x += scroll_speed
-    
-    # Maybe move pipes to right side of screen
-    if top_pipe.right < 0:
-        top_pipe.left = WIDTH
-        bottom_pipe.left = WIDTH
-        top_pipe.pair_number += 1
- 
-    # Check where barry is
-    if barry_the_bird.y > HEIGHT or barry_the_bird.y < 0:
-        # He went off the screen!
-        reset()
-        
-    if (barry_the_bird.colliderect(bottom_pipe) or barry_the_bird.colliderect(top_pipe)):
-        on_hit_pipe()
-        
-    # Maybe change the score
-    if top_pipe.right < barry_the_bird.x:
-        barry_the_bird.score = top_pipe.pair_number
-
-Every line that starts with a # (it's called the hash symbol) is a comment and will be ignored by Python.  Normally a programmer would always be adding comments as they write code.  Feel free to add comments to your code as you work. Or to go back and add comments to code you already wrote.  It will make things easier for you!
-
-Check the everything still works the same as before.
 
 
 
@@ -239,15 +229,15 @@ Often in Python you'll need to use the **import** keyword to get access to funct
 .. code:: python
 
     import random
-    print (random.randint(0,10))
+    print (random.randint(1,6))
 
 The second line is to test the :code:`randint` function in the :code:`random` module.  If you run your game now you should see a number printed in the Mu log.  
 
 *Start the game a few times to see what this function does.*
 
-Hopefully you'll see that this function returns a random integer (whole number) in the range of the two arguments we gave it. So in this case, from 0 to 10.  Now that we've seen that we can remove the print line, but keep the import line.
+Hopefully you'll see that this function returns a random integer (whole number) in the range of the two arguments we gave it. So in this case, from 0 to 10.  Now that we've tried it we can remove the :code:`print` line, but keep the :code:`import` line.
 
-Now let's use a random integer to move the gap up or down.  We'll do this in the update function, at the same time as when we move the pipes to the right side of the screen.  Our new helpful comments will make it easy to find the right place!  Find the lines which do :code:`right = WIDTH` for the pipes, and change them to:
+Now let's use a random integer to move the gap up or down.  We'll do this in the update function, at the same time as when we move the pipes to the right side of the screen.  Find the 2 lines which do :code:`left = WIDTH` for the pipes, and change them to:
 
 .. code:: python
 
@@ -263,7 +253,7 @@ It's not Flappy Bird with out a flap
 ------------------------------------
 So far our bird image is very static and the game should probably just be called "Bird".  Let's fix that now.
 
-If you click on the **images** button in Mu you will see there are several bird images. So far we're using bird0 for the living bird, and birddead for the bird ghost.  We can also use bird1 or bird2 to liven things up a bit!
+If you click on the **images** button in Mu you will see there are several bird images. So far we're using "bird1" for the living bird, and "birddead" for the bird ghost.  We can also use "bird0" to liven things up a bit!
 
 Add this code at the end of the update function:
 
@@ -281,5 +271,44 @@ Pay attention to the indentation here!  Any line that ends in a colon, like a fu
 The **else** keyword is new to us.  You can probably guess what it does.  An **if** can optionally have an **else** part after it.  The **else** part is what will happen if the value in the **if** statement is false. So our new code is using the "bird1" image when flying downwards (remember that we measure from the top of the screen, so a positive speed means going down), and using "bird0" when flying upwards.
 
 **Ask a mentor now if this isn't working for you or you don't understand.**
+
+
+
+Bug Fix Challenges
+------------------
+Bugs are things that don't work quite right in your code.  Absolutely all code has bugs in it when it's first written.  Let's try to fix a couple now. For each bug you should follow this process:
+
+1. Reproduce it.  This means checking that you can see the bug happen.
+2. Figure out why it's happening.
+3. Fix it!
+4. Check that you can't reproduce it any more.
+
+*Bug #1:  When you die and start again, your score at the top of the screen doesn't go back to zero.*
+
+*Bug #2:  If you crash in to the top pipe your falling ghost can keep flying far enough to get a cheeky extra point.*
+
+Well Done!!!
+------------
+You've written a complete fully working game! Take some time to enjoy playing your creation!  Remember there are values in the code like gravity, scroll_speed, and gap that you can tweak to try to make it more fun.
+
+If you want to add more features to your game the PyZero documentation will help:
+
+https://pygame-zero.readthedocs.io/en/stable/
+
+
+Ask a mentor to talk about how to make your idea could work.  Here's a few things you might want to try:
+
+- A high score feature so you can see your best score.
+
+- Starting the game with 3 lives so you can hit the pipes twice without dying
+
+- Collectible stars
+
+- Pipes that move up and down as they come towards you
+
+- Variable scrolling speed.  Maybe flapping speeds you up
+
+
+
 
 
