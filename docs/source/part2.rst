@@ -87,20 +87,18 @@ So now that we have the pipes, let's get them moving.
 
   If you thought that, then the game fooled you. It's a good trick. It looks like the player is moving forward. But in reality, the player stays still and everything else moves backwards.
 
-So let's make the pipes move. Just as we did with our bird we can add a speed variable to the pipes and use this to move them. We want the following lines of code to run once when we run the program, so they need to go at the end of your code:
+So let's make the pipes move. Just as we did with our bird we can create a speed variable for the pipes and use this to move them. We want the following line of code to run once when we run the program, so it needs to go at the end of your code:
 
 .. code:: python
 
    scroll_speed = 1
-   top_pipe.speed = scroll_speed
-   bottom_pipe.speed = scroll_speed
 
 And they need to move continously, so this code goes in the :code:`update` function:
 
 .. code:: python
 
-   top_pipe.x += top_pipe.speed
-   bottom_pipe.x += bottom_pipe.speed
+   top_pipe.x += scroll_speed
+   bottom_pipe.x += scroll_speed
 
 - Press **play**
 
