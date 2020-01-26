@@ -169,5 +169,4 @@ Ouch!
 
 OK, it's time to deal with collisions. This is going to be painful, but don't worry no actual birds are going to be harmed -- only virtual birds.
 
-To be continued...
-
+Go to :ref:`part3`.
