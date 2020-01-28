@@ -1,4 +1,4 @@
-
+.. _part3: 
 
 Part 3
 ======
@@ -201,6 +201,8 @@ The next thing to do is to change barry to not be alive when he hits a pipe.
 
 
 Well done.  That's the end of part 3.   In the next part we'll look at a few finishing touches such as adding a flapping animation, randomizing the pipe positions, and keeping score.
+
+Go to :ref:`part4`.
     
 Extra Challenges
 ----------------
@@ -219,6 +221,7 @@ Hint: Try adding this function and see what happens when you press a key:
 * Add a secret tiny flap that the player can do using the right mouse button
 
 Hint: you will need to add a **parameter** to your :code:`on_mouse_down` function, so it becomes :code:`on_mouse_down(button)`.  Try use the :code:`print` function like you did in the last challenge to see what values :code:`button` has.
+
 
 
 
